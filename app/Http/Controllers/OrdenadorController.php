@@ -6,6 +6,7 @@ use App\Models\Aula;
 use App\Models\Cambio;
 use App\Models\Ordenador;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Exists;
 
 class OrdenadorController extends Controller
 {
@@ -102,9 +103,9 @@ class OrdenadorController extends Controller
      */
     public function destroy(Ordenador $ordenador)
     {
-        $cambio = Cambio::where('ordenador_id', $ordenador->id)->first();
+        $cambios = Cambio::where('ordenador_id', $ordenador->id)->get();
 
-        if ($cambio) {
+        foreach ($cambios as $cambio) {
             $cambio->delete();
         }
 

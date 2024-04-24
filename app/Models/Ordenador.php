@@ -28,43 +28,42 @@ class Ordenador extends Model
 
     public function comprueba_origen()
     {
-        $cambio = Cambio::where('ordenador_id', $this->id)->first();
-
-        if ($cambio) {
+        $cambios = Cambio::where('ordenador_id', $this->id)->get();
+        $aulas_origen = '';
+        foreach ($cambios as $cambio) {
             $origen_id = $cambio->origen_id;
             $aula = Aula::find($origen_id);
-            return $aula->nombre;
-        } else {
-
-            return 'Sin cambio';
+            $aulas_origen .= '<li>' . $aula->nombre . '</li>';
         }
+        return $aulas_origen ? '<ul>' . $aulas_origen . '</ul>' : 'Sin cambio';
     }
+
 
     public function comprueba_destino()
     {
-        $cambio = Cambio::where('ordenador_id', $this->id)->first();
-
-        if ($cambio) {
+        $cambios = Cambio::where('ordenador_id', $this->id)->get();
+        $aulas_destino = '';
+        foreach ($cambios as $cambio) {
             $destino_id = $cambio->destino_id;
             $aula = Aula::find($destino_id);
-            return $aula->nombre;
-        } else {
-
-            return 'Sin cambio';
+            $aulas_destino .= '<li>' . $aula->nombre . '</li>';
         }
+        // Si hay aulas de destino, devolverlas en una lista HTML
+        // Si no hay cambios, devolver 'Sin cambio'
+        return $aulas_destino ? '<ul>' . $aulas_destino . '</ul>' : 'Sin cambio';
     }
+
 
     public function fecha_cambio()
     {
 
-        $cambio = Cambio::where('ordenador_id', $this->id)->first();
-        if ($cambio) {
-            $fecha = $cambio->updated_at;
-            return $fecha;
-        } else {
-            return 'Sin cambio';
+        $cambios = Cambio::where('ordenador_id', $this->id)->get();
+        $fechas = '';
+        foreach ($cambios as $cambio) {
+                $fechas .= '<li>' . $cambio->updated_at . '</li>';
+            }
+            return $fechas ? '<ul>' . $fechas . '</ul>' : 'Sin cambio';
         }
-    }
 
     public function cantidad_dispositivos()
     {
@@ -74,7 +73,7 @@ class Ordenador extends Model
     public function dispositivos_contenidos()
     {
         $dispositivos = Dispositivo::where('colocable_id', $this->id)->get();
-        
+
 
         if ($dispositivos->isEmpty()) {
             return 'Sin dispositivos';

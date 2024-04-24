@@ -38,13 +38,13 @@
                         {{ $ordenador->aula->nombre }}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        {{ $ordenador->comprueba_origen() }}
+                        {!! $ordenador->comprueba_origen() !!}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        {{ $ordenador->comprueba_destino() }}
+                        {!! $ordenador->comprueba_destino() !!}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        {{ $ordenador->fecha_cambio() }}
+                        {!! $ordenador->fecha_cambio() !!}
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{ $ordenador->dispositivos_contenidos() }}
