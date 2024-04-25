@@ -4,7 +4,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th class="px-6 py-3">
-                        Imagen
+                        Imagen     <!-- Para imágenes -->
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <a href="{{ route('ordenadores.index', ['order' => 'ordenadores.marca', 'order_dir' => order_dir($order == 'ordenadores.marca', $order_dir)]) }}"
@@ -38,7 +38,7 @@
                     <tr class="bg-white border-b">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             @if ($ordenador->existeImagen())
-                                <img src="{{ asset($ordenador->imagen_url) }}" />
+                                <img src="{{ asset($ordenador->imagen_url) }}" />     <!-- Para imágenes -->
                             @endif
                         </th>
                         <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
