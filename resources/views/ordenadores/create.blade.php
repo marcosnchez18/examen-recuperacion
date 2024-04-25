@@ -1,7 +1,15 @@
 <x-app-layout>
     <div class="w-1/2 mx-auto">
-        <form method="POST" action="{{ route('ordenadores.store') }}">
+        <form method="POST" action="{{ route('ordenadores.store') }}" enctype="multipart/form-data">
             @csrf
+            
+            <!-- Foto -->
+            <div>
+                <x-input-label for="foto" :value="'Foto del Ordenador'" />
+                <x-text-input id="foto" class="block mt-1 w-full" type="file" name="foto" :value="old('foto')"
+                    required autofocus autocomplete="foto" />
+                <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+            </div>
 
             <!-- Marca -->
             <div>

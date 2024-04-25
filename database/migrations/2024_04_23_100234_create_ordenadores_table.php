@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('marca');
             $table->string('modelo');
+            $table->string('foto');
             $table->foreignId('aula_id')->constrained();
             $table->timestamps();
         });

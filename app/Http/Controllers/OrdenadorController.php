@@ -8,6 +8,12 @@ use App\Models\Ordenador;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Exists;
 
+//para imágenes:
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
+
 class OrdenadorController extends Controller
 {
     /**
@@ -52,10 +58,19 @@ class OrdenadorController extends Controller
             'aula_id' => 'required|exists:aulas,id',
         ]);
 
-        $ordenador = new Ordenador();
+        $ordenador = new Ordenador();                 //img
+        $imagen = $request->file('foto');            //img
+        Storage::makeDirectory('public/album');      //img
+        $nombre = Carbon::now() . '.jpeg';          //img
+        $manager = new ImageManager(new Driver());  //img
+
+        $ordenador->guardar_imagen($imagen, $nombre, 100, $manager);    //img
+
+        //$ordenador = new Ordenador();    si no hay que añadir img se descomenta
         $ordenador->marca = $validated['marca'];
         $ordenador->modelo = $validated['modelo'];
         $ordenador->aula_id = $validated['aula_id'];
+        $ordenador->foto = $nombre;     //si no img, se quita esta linea
         $ordenador->save();
 
         session()->flash('success', 'El ordenador se ha creado correctamente.');
