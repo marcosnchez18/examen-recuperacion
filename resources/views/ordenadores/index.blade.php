@@ -3,14 +3,18 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                    <th  class="px-6 py-3">
-                        Marca
+                    <th scope="col" class="px-6 py-3">
+                        <a href="{{ route('ordenadores.index', ['order' => 'ordenadores.marca', 'order_dir' => order_dir($order == 'ordenadores.marca', $order_dir)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            Marca {{ order_dir_arrow($order == 'ordenadores.marca', $order_dir) }}
+                        </a>
                     </th>
                     <th  class="px-6 py-3">
                         Modelo
                     </th>
-                    <th  class="px-6 py-3">
-                        Aula
+                    <th scope="col" class="px-6 py-3">
+                        <a href="{{ route('ordenadores.index', ['order' => 'aulas.nombre', 'order_dir' => order_dir($order == 'aulas.nombre', $order_dir)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            Aula {{ order_dir_arrow($order == 'aulas.nombre', $order_dir) }}
+                        </a>
                     </th>
                     <th  class="px-6 py-3">
                         Cantidad de dispositivos

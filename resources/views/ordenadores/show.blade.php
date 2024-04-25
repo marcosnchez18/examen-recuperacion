@@ -52,5 +52,12 @@
                 </tr>
             </tbody>
         </table>
+        <div class="flex items-center justify-end mt-4">
+            <a href="{{ route('ordenadores.index') }}">
+                <x-secondary-button class="ms-4">
+                    Volver
+                    </x-primary-button>
+            </a>
+        </div>
     </div>
 </x-app-layout>

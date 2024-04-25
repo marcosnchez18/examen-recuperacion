@@ -13,10 +13,21 @@ class OrdenadorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $order = $request->query('order', 'marca');
+        $order_dir = $request->query('order_dir', 'asc');
+
+        $ordenadores = Ordenador::leftJoin('aulas', 'ordenadores.aula_id', '=', 'aulas.id')
+            ->select('ordenadores.*')
+            ->orderBy($order, $order_dir)
+            ->get();
+
+
         return view('ordenadores.index', [
-            'ordenadores' => Ordenador::all(),
+            'ordenadores' => $ordenadores,
+            'order' => $order,
+            'order_dir' => $order_dir
         ]);
     }
 

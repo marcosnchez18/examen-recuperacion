@@ -28,10 +28,11 @@ class Ordenador extends Model
 
     public function comprueba_origen()
     {
-        $cambios = Cambio::where('ordenador_id', $this->id)->get();
+        $cambios = Cambio::where('ordenador_id', $this->id)->get();   //obtener todas las filas
         $aulas_origen = '';
         foreach ($cambios as $cambio) {
             $origen_id = $cambio->origen_id;
+
             $aula = Aula::find($origen_id);
             $aulas_origen .= '<li>' . $aula->nombre . '</li>';
         }
@@ -67,8 +68,12 @@ class Ordenador extends Model
 
     public function cantidad_dispositivos()
     {
-        return Dispositivo::where('colocable_id', $this->id)->count();
+        $cuantos = Dispositivo::where('colocable_id', $this->id)->count();
+        return $cuantos;
     }
+
+
+
 
     public function dispositivos_contenidos()
     {
