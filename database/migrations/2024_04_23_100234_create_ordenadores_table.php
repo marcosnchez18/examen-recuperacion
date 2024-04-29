@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('marca');
             $table->string('modelo');
-            $table->string('foto');
+            $table->string('foto');   //por lo tanto borrar y crear bbdd de nuevo
             $table->foreignId('aula_id')->constrained();
             $table->timestamps();
         });

@@ -117,9 +117,19 @@ class OrdenadorController extends Controller
             'modelo' => 'required|max:255',
             'aula_id' => 'required|exists:aulas,id',
         ]);
+
+        $imagen = $request->file('foto');            //img
+        Storage::makeDirectory('public/album');      //img
+        $nombre = Carbon::now() . '.jpeg';          //img
+        $manager = new ImageManager(new Driver());  //img
+
+        $ordenador->guardar_imagen($imagen, $nombre, 100, $manager);    //img
+
+
         $ordenador->marca = $validated['marca'];
         $ordenador->modelo = $validated['modelo'];
         $ordenador->aula_id = $validated['aula_id'];
+        $ordenador->foto = $nombre;     //si no img, se quita esta linea
         $ordenador->save();
         return redirect()->route('ordenadores.index');
     }
