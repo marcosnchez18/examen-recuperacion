@@ -30,6 +30,7 @@ class OrdenadorController extends Controller
             ->get();
 
 
+            
         return view('ordenadores.index', [
             'ordenadores' => $ordenadores,
             'order' => $order,
