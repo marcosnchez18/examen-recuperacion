@@ -30,7 +30,7 @@ class OrdenadorController extends Controller
             ->get();
 
 
-            
+
         return view('ordenadores.index', [
             'ordenadores' => $ordenadores,
             'order' => $order,
@@ -150,4 +150,14 @@ class OrdenadorController extends Controller
         session()->flash('success', 'El ordenador se ha eliminado correctamente.');
         return redirect()->route('ordenadores.index');
     }
+
+
+    public function borrarCambios(Ordenador $ordenador)
+    {
+
+        $ordenador->cambios()->delete();
+
+        return redirect()->route('ordenadores.show', $ordenador)->with('success', 'Cambios borrados exitosamente');
+    }
+
 }

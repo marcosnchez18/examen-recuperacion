@@ -31,5 +31,7 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('ordenadores', OrdenadorController::class)->parameters(['ordenadores' => 'ordenador']);   //nombre peligroso de crud
 
+Route::delete('/ordenadores/{ordenador}/borrar-cambios', [OrdenadorController::class, 'borrarCambios'])->name('ordenadores.borrarCambios');    //borra solo el registro de 1 pc
+
 
 require __DIR__.'/auth.php';
